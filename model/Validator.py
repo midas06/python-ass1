@@ -25,8 +25,14 @@ class Validator:
             else:
                 self._bad_data.append(i)
 
-    def get_gooddata(self):
+    def export_gooddata(self):
         return self._good_data
+
+    def export_baddata(self):
+        return self._bad_data
+
+    def has_baddata(self):
+        return len(self._bad_data) > 0
 
     ###
         # clean methods
