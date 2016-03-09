@@ -12,13 +12,15 @@ class Database(object):
     def serialize(self):
         with open('database.pickle', 'wb') as f:
             pickle.dump(self._database, f)
+        f.close()
 
     def deserialize(self):
         with open('database.pickle', 'rb') as f:
             # self._database = pickle.load(f)
             db = pickle.load(f)
-            for i in db:
-                print(i)
+            f.close()
+        for i in db:
+            print(i)
 
     def print_g(self):
         for i in self._database:
