@@ -1,0 +1,3 @@
+abc male 23000
+def female 12000
+ijk female 999
