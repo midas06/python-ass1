@@ -40,5 +40,5 @@ class FileHandler(object):
             print(s)
 
     def get_file_path(self):
-        return self._filepath;
+        return self._filepath
 
