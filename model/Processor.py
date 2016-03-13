@@ -61,5 +61,6 @@ class Processor(object):
         self.database.serialize()
         self.database.deserialize()
 
-#a = Processor()
-#a.empty_data()
+a = Processor()
+a.add_data("test.csv")
+a.database.serialize()

@@ -52,7 +52,7 @@ class Validator:
             ex = len(a_gender) - 1
             a_gender = a_gender[:-ex]
 
-        return a_gender.title()
+        return a_gender
 
     @staticmethod
     def clean_age(an_age):
