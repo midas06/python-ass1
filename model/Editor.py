@@ -15,7 +15,10 @@ class Editor(object):
         for s in self._raw_data:
             self.validate(s)
 
+
+
     def validate(self, a_string):
+        print("bad data: \n" + a_string)
         list_ = a_string.split(',')
 
         id_ = list_[0]
@@ -41,29 +44,31 @@ class Editor(object):
             income = ""
 
         while not Validator.hasvalid_id(id_):
-            id_ = self.set_newvalue("id")
+            id_ = self.set_newvalue("A123", "id")
 
         while not Validator.hasvalid_gender(gender):
-            gender = self.set_newvalue("gender")
+            gender = self.set_newvalue("M", "gender")
 
         while not Validator.hasvalid_age(age):
-            age = self.set_newvalue("age")
+            age = self.set_newvalue("01", "age")
 
         while not Validator.hasvalid_sales(sales):
-            sales = self.set_newvalue("sales")
+            sales = self.set_newvalue("001", "sales")
 
         while not Validator.hasvalid_bmi(bmi):
-            bmi = self.set_newvalue("bmi")
+            bmi = self.set_newvalue("Normal, Overweight, Obesity,Underweight", "bmi")
 
         while not Validator.hasvalid_income(income):
-            income = self.set_newvalue("income")
+            income = self.set_newvalue("00-100", "income")
 
         p = Person(Validator.clean_id(id_), Validator.clean_gender(gender), Validator.clean_age(age), Validator.clean_sale(sales), Validator.clean_bmi(bmi), Validator.clean_income(income))
 
         self._good_data.update({p.get_id(): p})
 
-    def set_newvalue(self, value):
-        return input("set a new " + value + ":\n")
+    def set_newvalue(self, correct_input, value):
+        return input("correct format is: " + correct_input + "\nSet a new " + value + ":\n")
 
     def export_gooddata(self):
         return self._good_data
+
+

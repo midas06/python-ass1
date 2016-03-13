@@ -46,3 +46,4 @@ class Person(object):
 
     def set_bmi(self, new_bmi):
         self._bmi = new_bmi
+

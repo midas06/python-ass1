@@ -2,6 +2,7 @@ from model.Person import *
 import re
 
 
+
 class Validator:
 
     def __init__(self):
@@ -145,6 +146,21 @@ class Validator:
         return False
 
 
+    #jess
+    def print_bad_data(self):
+        for i in self._bad_data:
+            print(i)
+
+    def empty_bad_data(self): #empty bad data every time a file with bad data is loaded
+        self._bad_data = []
+        #print("CURRENT BAD:" + str(len(self._bad_data)))
+
+    def get_bad_data_len(self):
+        return len(self._bad_data)
+
+    def empty_raw_data(self): #well it fixed the last issue :D
+        self._raw_data = None
+
     def test(self):
         # for i in self._raw_data:
         #     if self.isvalid(i):
@@ -199,3 +215,4 @@ class Validator:
         # # print(self.hasvalid_age(s))
         # # sale = self.clean_sales("d")
         # # print(self.hasvalid_sales(sale))
+
