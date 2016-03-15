@@ -55,7 +55,6 @@ class CmdFunction(object):
             return "No bad data to edit."
         else:
             self.processor.process_bad()
-        self.processor.validator.empty_bad_data()
 
     """
     def quit(self, theMessage):

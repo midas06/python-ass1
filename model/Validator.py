@@ -2,7 +2,6 @@ from model.Person import *
 import re
 
 
-
 class Validator:
 
     def __init__(self):

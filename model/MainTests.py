@@ -44,7 +44,7 @@ class MainTests(unittest.TestCase):
 
     def test_edit_data(self):
         self.c = CmdFunction()
-        self.c.processor.validator.set_raw_data(T109,M,74,861,-,22)
+        self.c.processor.validator.set_raw_data("T109,M,74,861,-,22")
         self.c.processor.validator.parse_data()
         self.c.display_bad()
 

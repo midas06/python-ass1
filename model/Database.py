@@ -39,6 +39,4 @@ class Database(object):
     def getLength(self):
         return len(self._database)
 
-    def empty_database(self):
-        self._database.clear()
-        #print(len(self._database))
+

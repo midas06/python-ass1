@@ -12,13 +12,27 @@ class Editor(object):
         self._raw_data = new_data
 
     def edit(self):
-        for s in self._raw_data:
-            self.validate(s)
+        while len(self._raw_data) > 0:
+            s = self._raw_data[0]
+            (print("Bad data: \n" + s))
+            self.edit_or_delete(s)
+        print ("All bad data has been handled")
 
+    def edit_or_delete(self, a_string):
+        i = input("Press 'E' to edit the data, press 'D' to delete it.\n")
+        if i == 'E' or i == 'e':
+            self.validate(a_string)
+        elif i == 'D' or i == 'd':
+            self.remove_from_raw(a_string)
+        else:
+            self.edit_or_delete(a_string)
 
+    def remove_from_raw(self, the_string):
+        if the_string in self._raw_data:
+            self._raw_data.remove(the_string)
 
     def validate(self, a_string):
-        print("bad data: \n" + a_string)
+
         list_ = a_string.split(',')
 
         id_ = list_[0]
@@ -44,31 +58,42 @@ class Editor(object):
             income = ""
 
         while not Validator.hasvalid_id(id_):
-            id_ = self.set_newvalue("A123", "id")
+            id_ = self.set_newvalue(id_, "A123", "id")
 
         while not Validator.hasvalid_gender(gender):
-            gender = self.set_newvalue("M", "gender")
+            gender = self.set_newvalue(gender, "M", "gender")
 
         while not Validator.hasvalid_age(age):
-            age = self.set_newvalue("01", "age")
+            age = self.set_newvalue(age, "01", "age")
 
         while not Validator.hasvalid_sales(sales):
-            sales = self.set_newvalue("001", "sales")
+            sales = self.set_newvalue(sales, "001", "sales")
 
         while not Validator.hasvalid_bmi(bmi):
-            bmi = self.set_newvalue("Normal, Overweight, Obesity,Underweight", "bmi")
+            bmi = self.set_newvalue(bmi, "Normal, Overweight, Obesity,Underweight", "bmi")
 
         while not Validator.hasvalid_income(income):
-            income = self.set_newvalue("00-100", "income")
+            income = self.set_newvalue(income, "00-100", "income")
+
+        # print("Are these details correct?\n")
+        # print("ID: " + id_ + "\n")
+        # print("Gender: " + gender + "\n")
+        # print("Age: " + age + "\n")
+        # print("Sales: " + sales + "\n")
+        # print("BMI: " + bmi + "\n")
+        # print("Income: " + income + "\n")
 
         p = Person(Validator.clean_id(id_), Validator.clean_gender(gender), Validator.clean_age(age), Validator.clean_sale(sales), Validator.clean_bmi(bmi), Validator.clean_income(income))
 
         self._good_data.update({p.get_id(): p})
+        self._raw_data.remove(a_string)
 
-    def set_newvalue(self, correct_input, value):
-        return input("correct format is: " + correct_input + "\nSet a new " + value + ":\n")
+    def set_newvalue(self, bad_input, correct_input, value):
+        print("The current " + value + " is: " + bad_input + "\n")
+        return input("The correct format is: " + correct_input + "\nSet a new " + value + ":\n")
 
     def export_gooddata(self):
         return self._good_data
 
-
+    def export_baddata(self):
+        return self._raw_data
