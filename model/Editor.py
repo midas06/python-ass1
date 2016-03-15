@@ -32,8 +32,7 @@ class Editor(object):
             self._raw_data.remove(the_string)
 
     def validate(self, a_string):
-
-        list_ = a_string.split(',')
+        list_ = Validator.clean_input(a_string)
 
         id_ = list_[0]
         if len(list_) > 1:
@@ -58,22 +57,22 @@ class Editor(object):
             income = ""
 
         while not Validator.hasvalid_id(id_):
-            id_ = self.set_newvalue(id_, "A123", "id")
+            id_ = Validator.clean_id(self.set_newvalue(id_, "A123", "id"))
 
         while not Validator.hasvalid_gender(gender):
-            gender = self.set_newvalue(gender, "M", "gender")
+            gender = Validator.clean_gender(self.set_newvalue(gender, "M", "gender"))
 
         while not Validator.hasvalid_age(age):
-            age = self.set_newvalue(age, "01", "age")
+            age = Validator.clean_age(self.set_newvalue(age, "01", "age"))
 
         while not Validator.hasvalid_sales(sales):
-            sales = self.set_newvalue(sales, "001", "sales")
+            sales = Validator.clean_sales(self.set_newvalue(sales, "001", "sales"))
 
         while not Validator.hasvalid_bmi(bmi):
-            bmi = self.set_newvalue(bmi, "Normal, Overweight, Obesity, Underweight", "bmi")
+            bmi = Validator.clean_bmi(self.set_newvalue(bmi, "Normal, Overweight, Obesity, Underweight", "bmi"))
 
         while not Validator.hasvalid_income(income):
-            income = self.set_newvalue(income, "00-100", "income")
+            income = Validator.clean_income(self.set_newvalue(income, "00-100", "income"))
 
         p = Person(Validator.clean_id(id_), Validator.clean_gender(gender), Validator.clean_age(age), Validator.clean_sale(sales), Validator.clean_bmi(bmi), Validator.clean_income(income))
 

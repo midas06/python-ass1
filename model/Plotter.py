@@ -22,12 +22,8 @@ class Plotter(object):
         plt.title("Distribution of Gender (" + str(total) + " people):")
         plt.show()
 
-    def pie_sales(self, low_dist, med_dist, high_dist):
-        total = low_dist + med_dist + high_dist
-        labels = "< $333", "Female"
-        size = [m_dist, f_dist]
-        colors = ['yellowgreen', 'gold']
-        plt.pie(size, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=90)
-        plt.axis('equal')
-        plt.title("Distribution of Gender (" + str(total) + " people):")
+    def scatter_sales(self, sales_list):
+        plt.scatter(range(len(sales_list)), sales_list)
+        plt.title("Range of Sales Numbers")
+        plt.ylabel("Sales ($)")
         plt.show()

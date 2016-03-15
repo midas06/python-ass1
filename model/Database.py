@@ -1,5 +1,5 @@
 import pickle
-
+import operator
 
 class Database(object):
 
@@ -91,20 +91,12 @@ class Database(object):
         dist = {"males": m, "females": f}
         return dist
 
-    def get_sales_distribution(self):
-        low, med, high = 0, 0, 0
+    def get_sales_ordered(self):
+        sales_list = []
 
         for k, v in self._database.items():
-            s = int(v.get_sales())
-            if s < 333:
-                low += 1
-            elif s > 666:
-                high += 1
-            else:
-                med += 1
+            print(v.get_sales())
+            sales_list.append(int(v.get_sales()))
 
-        dist = {"low": low, "med": med, "high": high}
-        print (dist)
-
-
+        return sorted(sales_list)
 

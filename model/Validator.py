@@ -12,12 +12,12 @@ class Validator:
     def set_raw_data(self, new_data):
         self._raw_data = new_data
 
-    def to_obj(self, a_string):
-        str_list = a_string.split(",")
-        new_person = Person(str_list[0], str_list[1], str_list[2], str_list[3], str_list[4], str_list[5])
+    def to_obj(self, a_list):
+        #str_list = a_string.split(",")
+        new_person = Person(a_list[0], a_list[1], a_list[2], a_list[3], a_list[4], a_list[5])
         return new_person
 
-   def parse_data(self):
+    def parse_data(self):
         for i in self._raw_data:
             a_list = self.clean_input(i)
             if self.isvalid(a_list):

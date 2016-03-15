@@ -71,11 +71,11 @@ class Processor(object):
         dist = self.database.get_gender_distribution()
         self.plotter.pie_gender(dist["males"], dist["females"])
 
-    def pie_sales(self):
-        sales_dist = self.database.get_sales_distribution()
-        self.plotter.pie_sales(sales_dist)
+    def scatter_sales(self):
+        sales_list = self.database.get_sales_ordered()
+        self.plotter.scatter_sales(sales_list)
 
 
-a = Processor()
-a.add_data("test.csv")
-a.scatter_sales()
+# a = Processor()
+# a.add_data("test.csv")
+# a.scatter_sales()

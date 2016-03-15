@@ -114,6 +114,6 @@ if __name__ == '__main__':
     quitter = Quitter()
 
     #c = CmdFunction()
-    doctest.testmod()
+    #doctest.testmod()
     quitter.cmdloop()
 
