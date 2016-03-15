@@ -2,6 +2,7 @@ from model.Validator import *
 from model.FileHandler import *
 from model.Database import *
 from model.Editor import *
+from model.Plotter import *
 import os.path
 
 
@@ -12,6 +13,7 @@ class Processor(object):
         self.validator = Validator()
         self.database = Database()
         self.editor = Editor()
+        self.plotter = Plotter()
     """
     def add_data(self, fileloc):
         self.filer.set_filepath(fileloc)
@@ -61,6 +63,19 @@ class Processor(object):
         self.database.serialize()
         self.database.deserialize()
 
+    def pie_bmi(self):
+        dist = self.database.get_bmi_distribution()
+        self.plotter.pie_bmi(dist["normal"], dist["overweight"], dist["obese"], dist["underweight"])
+
+    def pie_gender(self):
+        dist = self.database.get_gender_distribution()
+        self.plotter.pie_gender(dist["males"], dist["females"])
+
+    def pie_sales(self):
+        sales_dist = self.database.get_sales_distribution()
+        self.plotter.pie_sales(sales_dist)
+
+
 a = Processor()
 a.add_data("test.csv")
-a.database.serialize()
+a.scatter_sales()

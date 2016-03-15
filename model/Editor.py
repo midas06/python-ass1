@@ -70,18 +70,10 @@ class Editor(object):
             sales = self.set_newvalue(sales, "001", "sales")
 
         while not Validator.hasvalid_bmi(bmi):
-            bmi = self.set_newvalue(bmi, "Normal, Overweight, Obesity,Underweight", "bmi")
+            bmi = self.set_newvalue(bmi, "Normal, Overweight, Obesity, Underweight", "bmi")
 
         while not Validator.hasvalid_income(income):
             income = self.set_newvalue(income, "00-100", "income")
-
-        # print("Are these details correct?\n")
-        # print("ID: " + id_ + "\n")
-        # print("Gender: " + gender + "\n")
-        # print("Age: " + age + "\n")
-        # print("Sales: " + sales + "\n")
-        # print("BMI: " + bmi + "\n")
-        # print("Income: " + income + "\n")
 
         p = Person(Validator.clean_id(id_), Validator.clean_gender(gender), Validator.clean_age(age), Validator.clean_sale(sales), Validator.clean_bmi(bmi), Validator.clean_income(income))
 
@@ -89,7 +81,7 @@ class Editor(object):
         self._raw_data.remove(a_string)
 
     def set_newvalue(self, bad_input, correct_input, value):
-        print("The current " + value + " is: " + bad_input + "\n")
+        print("The current " + value + " is: " + bad_input)
         return input("The correct format is: " + correct_input + "\nSet a new " + value + ":\n")
 
     def export_gooddata(self):

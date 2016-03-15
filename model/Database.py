@@ -61,4 +61,50 @@ class Database(object):
             result.append(c.get_sales())
         return result
 
+    def get_bmi_distribution(self):
+        norm, ov, ob, uw = 0, 0, 0, 0
+
+        for key, value in self._database.items():
+            b = value.get_bmi()
+            if b == "Overweight":
+                ov += 1
+            elif b == "Underweight":
+                uw += 1
+            elif b == "Normal":
+                norm += 1
+            elif b == "Obesity":
+                ob += 1
+
+        dist = {"normal" : norm, "overweight" : ov, "obese": ob, "underweight": uw}
+        return dist
+
+    def get_gender_distribution(self):
+        m, f = 0, 0
+
+        for k, v in self._database.items():
+            g = v.get_gender()
+            if g == 'M':
+                m += 1
+            else:
+                f += 1
+
+        dist = {"males": m, "females": f}
+        return dist
+
+    def get_sales_distribution(self):
+        low, med, high = 0, 0, 0
+
+        for k, v in self._database.items():
+            s = int(v.get_sales())
+            if s < 333:
+                low += 1
+            elif s > 666:
+                high += 1
+            else:
+                med += 1
+
+        dist = {"low": low, "med": med, "high": high}
+        print (dist)
+
+
 

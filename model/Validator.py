@@ -17,10 +17,11 @@ class Validator:
         new_person = Person(str_list[0], str_list[1], str_list[2], str_list[3], str_list[4], str_list[5])
         return new_person
 
-    def parse_data(self):
+   def parse_data(self):
         for i in self._raw_data:
-            if self.isvalid(i):
-                p = self.to_obj(i)
+            a_list = self.clean_input(i)
+            if self.isvalid(a_list):
+                p = self.to_obj(a_list)
                 self._good_data.update({p.get_id(): p})
             else:
                 self._bad_data.append(i)
@@ -36,6 +37,20 @@ class Validator:
 
     ###
         # clean methods
+
+    @staticmethod
+    def clean_input(an_input):
+        the_input = an_input.replace(" ", "")
+        the_input = the_input.split(",")
+        the_input[0] = Validator.clean_id(the_input[0])
+        the_input[1] = Validator.clean_gender(the_input[1])
+        the_input[2] = Validator.clean_age(the_input[2])
+        the_input[3] = Validator.clean_sale(the_input[3])
+        the_input[4] = Validator.clean_bmi(the_input[4])
+        the_input[5] = Validator.clean_income(the_input[5])
+        return the_input
+
+
     @staticmethod
     def clean_id(an_id):
         an_id = an_id.title()
@@ -81,69 +96,61 @@ class Validator:
         # validate methods
     @staticmethod
     def hasvalid_id(an_id):
-        id = Validator.clean_id(an_id)
         pattern = re.compile('^([A-Z]{1}[0-9]{3})+$')
 
-        if pattern.match(id) is None:
+        if pattern.match(an_id) is None:
             return False
 
         return True
 
     @staticmethod
     def hasvalid_gender(a_gender):
-        g = Validator.clean_gender(a_gender)
-        if g == 'M' or g == 'F':
+        if a_gender == 'M' or a_gender == 'F':
             return True
 
         return False
 
     @staticmethod
     def hasvalid_age(an_age):
-        a = Validator.clean_age(an_age)
         pattern = re.compile('^([0-9]{2})+$')
 
-        if pattern.match(a) is None:
+        if pattern.match(an_age) is None:
             return False
 
         return True
 
     @staticmethod
     def hasvalid_sales(a_sale):
-        s = Validator.clean_sale(a_sale)
         pattern = re.compile('^([0-9]{3})+$')
 
-        if pattern.match(s) is None:
+        if pattern.match(a_sale) is None:
             return False
 
         return True
 
     @staticmethod
     def hasvalid_bmi(an_index):
-        i = Validator.clean_bmi(an_index)
         valid = ["Normal", "Overweight", "Obesity", "Underweight"]
 
-        if i in valid:
+        if an_index in valid:
             return True
 
         return False
 
     @staticmethod
     def hasvalid_income(an_income):
-        i = Validator.clean_income(an_income)
         pattern = re.compile('^([0-9]{2,3})+$')
 
-        if pattern.match(i) is None:
+        if pattern.match(an_income) is None:
             return False
 
         return True
 
-    def isvalid(self, a_string):
-        str_list = a_string.split(",")
-        if self.hasvalid_id(str_list[0]) and self.hasvalid_gender(str_list[1]) and self.hasvalid_age(str_list[2]) and self.hasvalid_sales(str_list[3]) and self.hasvalid_bmi(str_list[4]) and self.hasvalid_income(str_list[5]):
+    def isvalid(self, a_list):
+        if self.hasvalid_id(a_list[0]) and self.hasvalid_gender(a_list[1]) and self.hasvalid_age(a_list[2]) and self.hasvalid_sales(a_list[3]) and self.hasvalid_bmi(a_list[4]) and self.hasvalid_income(a_list[5]):
             return True
 
         return False
-
 
     #jess
     def print_bad_data(self):
