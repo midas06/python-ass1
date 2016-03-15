@@ -26,10 +26,8 @@ class Database(object):
             if key == an_id:
                 return value
 
-
     def get_test_data(self):
         result = []
-        #result = ""
         for i in self._database:
             c = self._database.get(i)
             result.append(str(i) + "," + str(c.get_gender()) + "," + str(c.get_age()) + "," + str(c.get_sales()) + "," + str(c.get_bmi()) + "," + str(c.get_income()))
@@ -40,12 +38,11 @@ class Database(object):
             c = self._database.get(i)
             print(i + "\t" + c.get_gender() + "\t" + c.get_age() + "\t" + c.get_sales() + "\t" + c.get_bmi() + "\t\t" + c.get_income())
 
-
     def get_length(self):
         return len(self._database)
 
     def empty_database(self):
-        self._database.clear()
+        self._database = {}
 
     def get_male_bmi(self):
         male = [0,0,0,0]

@@ -10,22 +10,22 @@ class Controller(cmd.Cmd):
 
     def __init__(self):
         cmd.Cmd.__init__(self)
-        self.cmdFunction = CmdFunction()
         self.prompt = ">>>"
 
     def do_load_file(self, file_path):
         """
         Loads file - lf (filename/filepath)
-        :param file_path:
+        :param file_path: String - name of the file to be loaded
         :return:
         """
+        self.cmdFunction = CmdFunction()
         print(self.cmdFunction.load_file(file_path))
 
     def do_display_good(self, msg):
         """
         Displays good data in a 2d table - dg
-        :param msg:
-        :return:
+        :param  none
+        :return: none
         """
         self.cmdFunction.display_good(msg)
 
@@ -33,8 +33,8 @@ class Controller(cmd.Cmd):
     def do_display_bad(self, msg):
         """
         Displays bad data in a string array - db
-        :param msg:
-        :return:
+        :param  none
+        :return: none
         """
         self.cmdFunction.display_bad(msg)
 
@@ -42,8 +42,8 @@ class Controller(cmd.Cmd):
         """
         Allows user to edit bad data - eb
             Enter E to edit and D to delete
-        :param value:
-        :return:
+        :param  none
+        :return: none
         """
         self.cmdFunction.edit_bad(value)
 
@@ -52,8 +52,8 @@ class Controller(cmd.Cmd):
         """
         Quits program - q
             Enter Y or N to exit
-        :param msg:
-        :return:
+        :param none
+        :return: none
         """
         quit = input("Are you sure you want to quit? Y/N \n>>>")
         if quit == 'Y' or quit == 'y':
@@ -67,8 +67,8 @@ class Controller(cmd.Cmd):
     def do_display_graphs(self, value):
         """
         Displays graphs - dgr
-        :param value:
-        :return:
+        :param none
+        :return: none
         """
         i = input("Press 1 to display BMI data\nPress 2 to display Gender data\nPress 3 to display Sales data\nPress 4 to display Bmi vs Gender data\n")
         if i == "1" or i == "2" or i == "3" or i == "4":
@@ -76,6 +76,25 @@ class Controller(cmd.Cmd):
         else:
             print("Invalid input")
 
+    def do_serialize(self, value):
+        """
+        Serializes the dictionary of people as a pickle file
+        :param none
+        :return: none
+        """
+        self.cmdFunction.serialize()
+
+    def do_deserialize(self, value):
+        """
+        Deserializes pickled data dictionary
+        :param none
+        :return: none
+        """
+        try:
+            self.cmdFunction.deserialize()
+        except IOError as no_file_err:
+            print("No pickle file found")
+            pass
 
     do_lf = do_load_file
     do_dg = do_display_good
@@ -92,7 +111,7 @@ class Controller(cmd.Cmd):
         Bad data: 3
 
         >>> controller.do_display_good("")
-        No good data to display.
+
 
         >>> controller.do_display_bad("")
         abc male 23000
@@ -108,7 +127,7 @@ class Controller(cmd.Cmd):
         No file/path entered
 
         >>> controller.do_display_good("")
-        No data to display. Please load a file
+        No data to display. Please load a file or run deserialize
 
         >>> controller.do_display_bad("")
         No data to display. Please load a file

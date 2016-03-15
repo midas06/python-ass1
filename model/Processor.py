@@ -15,7 +15,9 @@ class Processor(object):
         self.editor = Editor()
         self.plotter = Plotter()
 
+
     def add_data(self, fileloc):
+        self.database.empty_database()
         self.filer.set_filepath(fileloc)
         self.filer.load_file()
         self.filer.strip_tags()
@@ -29,8 +31,11 @@ class Processor(object):
             self.editor.edit()
             self.database.add_people(self.editor.export_good_data())
 
-    def serialize_test(self):
+    def serialize(self):
         self.database.serialize()
+
+    def deserialize(self):
+        self.database.empty_database()
         self.database.deserialize()
 
     def pie_bmi(self):
@@ -47,5 +52,3 @@ class Processor(object):
 
     def bar_bmi_vs_gender(self):
         self.plotter.bar_bmi_vs_gender(self.database.get_male_bmi(),self.database.get_female_bmi() )
-
-

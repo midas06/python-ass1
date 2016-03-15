@@ -62,7 +62,10 @@ class MainTests(unittest.TestCase):
         self.c.processor.validator.set_raw_data(["a558,f,8,885,normal,517"])
         self.c.processor.validator.parse_data()
         self.c.processor.database.add_people(self.c.processor.validator.export_good_data())
+        p = Person(self.c.processor.validator.clean_id("a558"), self.c.processor.validator.clean_gender("f"), self.c.processor.validator.clean_age("8"), self.c.processor.validator.clean_sales("885"), self.c.processor.validator.clean_bmi("normal"), self.c.processor.validator.clean_income("517"))
+        self.c.processor.database.add_people({p.get_id(): p})
         self.assertEqual(self.c.processor.database.get_test_data(), ["A558,F,08,885,Normal,517"])
+
 
     def test_separate_good_bad_data(self):
         """
@@ -104,3 +107,4 @@ class MainTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
