@@ -20,6 +20,7 @@ class Validator:
     def parse_data(self):
         for i in self._raw_data:
             a_list = self.clean_input(i)
+
             if self.isvalid(a_list):
                 p = self.to_obj(a_list)
                 self._good_data.update({p.get_id(): p})
@@ -42,12 +43,15 @@ class Validator:
     def clean_input(an_input):
         the_input = an_input.replace(" ", "")
         the_input = the_input.split(",")
-        the_input[0] = Validator.clean_id(the_input[0])
-        the_input[1] = Validator.clean_gender(the_input[1])
-        the_input[2] = Validator.clean_age(the_input[2])
-        the_input[3] = Validator.clean_sale(the_input[3])
-        the_input[4] = Validator.clean_bmi(the_input[4])
-        the_input[5] = Validator.clean_income(the_input[5])
+        try:
+            the_input[0] = Validator.clean_id(the_input[0])
+            the_input[1] = Validator.clean_gender(the_input[1])
+            the_input[2] = Validator.clean_age(the_input[2])
+            the_input[3] = Validator.clean_sale(the_input[3])
+            the_input[4] = Validator.clean_bmi(the_input[4])
+            the_input[5] = Validator.clean_income(the_input[5])
+        except IndexError as e:
+            pass
         return the_input
 
 
