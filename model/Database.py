@@ -39,4 +39,26 @@ class Database(object):
     def getLength(self):
         return len(self._database)
 
+    def empty_database(self):
+        self._database.clear()
+        #print(len(self._database))
+
+
+    def get_age_array(self):
+        result = []
+        for i in self._database:
+            c = self._database.get(i)
+            #result += str(i) + "\t" + str(c.get_gender()) + "\t" + str(c.get_age()) + "\t" + str(c.get_sales()) + "\t" + str(c.get_bmi()) + "\t\t" + str(c.get_income())
+            #print(c.get_age())
+            #return result
+            result.append(c.get_age())
+        return result
+
+    def get_sales_array(self):
+        result = []
+        for i in self._database:
+            c = self._database.get(i)
+            result.append(c.get_sales())
+        return result
+
 
