@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
 class Plotter(object):
 
@@ -27,3 +28,33 @@ class Plotter(object):
         plt.title("Range of Sales Numbers")
         plt.ylabel("Sales ($)")
         plt.show()
+
+    def bar_bmi_vs_gender(self, male_bmi, female_bmi):
+
+        n_groups = 4
+
+        x = male_bmi
+        y = female_bmi
+
+        fig, ax = plt.subplots()
+
+        index = np.arange(n_groups)
+        bar_width = 0.25
+
+
+        rects1 = plt.bar(index, x, bar_width,
+                         color='b',
+                         label='Male')
+
+        rects2 = plt.bar(index + bar_width, y, bar_width,
+                         color='r',
+                         label='Female')
+
+        plt.xlabel('bmi')
+        plt.ylabel('no. of people')
+        plt.title('bmi by gender')
+        plt.xticks(index + bar_width, ('Normal', 'Overweight', 'Obesity', 'Underweight'))
+        plt.legend()
+
+        plt.show()
+

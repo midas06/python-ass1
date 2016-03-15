@@ -1,5 +1,5 @@
 import pickle
-import operator
+
 
 class Database(object):
 
@@ -16,50 +16,70 @@ class Database(object):
 
     def deserialize(self):
         with open('database.pickle', 'rb') as f:
-            # self._database = pickle.load(f)
-            db = pickle.load(f)
+            self._database = pickle.load(f)
             f.close()
-        for i in db:
-            print(i)
+        # for i in db:
+        #     print(i)
 
-    def print_g(self):
-        for i in self._database:
-            c = self._database.get(i)
-            print(i, c.get_income())
+    def get_person_by_id(self, an_id):
+        for key, value in self._database.items():
+            if key == an_id:
+                return value
 
-    #jess
-    def print_all(self):
+
+    def get_test_data(self):
+        result = []
         #result = ""
         for i in self._database:
             c = self._database.get(i)
-            #result += str(i) + "\t" + str(c.get_gender()) + "\t" + str(c.get_age()) + "\t" + str(c.get_sales()) + "\t" + str(c.get_bmi()) + "\t\t" + str(c.get_income())
-            print(i + "\t" + c.get_gender() + "\t" + c.get_age() + "\t" + c.get_sales() + "\t" + c.get_bmi() + "\t\t" + c.get_income())
-            #return result
+            result.append(str(i) + "," + str(c.get_gender()) + "," + str(c.get_age()) + "," + str(c.get_sales()) + "," + str(c.get_bmi()) + "," + str(c.get_income()))
+        return result
 
-    def getLength(self):
+    def print_all(self):
+        for i in self._database:
+            c = self._database.get(i)
+            print(i + "\t" + c.get_gender() + "\t" + c.get_age() + "\t" + c.get_sales() + "\t" + c.get_bmi() + "\t\t" + c.get_income())
+
+
+    def get_length(self):
         return len(self._database)
 
     def empty_database(self):
         self._database.clear()
-        #print(len(self._database))
+
+    def get_male_bmi(self):
+        male = [0,0,0,0]
+        for key, value in self._database.items():
+            bmi = value.get_bmi()
+            gender = value.get_gender()
+            if gender == "M":
+                if bmi == "Normal":
+                    male[0] += 1
+                elif bmi == "Overweight":
+                    male[1] +=1
+                elif bmi == "Obesity":
+                    male[2] +=1
+                elif bmi == "Underweight":
+                    male[3] +=1
+        return male
 
 
-    def get_age_array(self):
-        result = []
-        for i in self._database:
-            c = self._database.get(i)
-            #result += str(i) + "\t" + str(c.get_gender()) + "\t" + str(c.get_age()) + "\t" + str(c.get_sales()) + "\t" + str(c.get_bmi()) + "\t\t" + str(c.get_income())
-            #print(c.get_age())
-            #return result
-            result.append(c.get_age())
-        return result
+    def get_female_bmi(self):
+        female = [0,0,0,0]
+        for key, value in self._database.items():
+            bmi = value.get_bmi()
+            gender = value.get_gender()
+            if gender == "F":
+                if bmi == "Normal":
+                    female[0] += 1
+                elif bmi == "Overweight":
+                    female[1] +=1
+                elif bmi == "Obesity":
+                    female[2] +=1
+                elif bmi == "Underweight":
+                    female[3] +=1
+        return female
 
-    def get_sales_array(self):
-        result = []
-        for i in self._database:
-            c = self._database.get(i)
-            result.append(c.get_sales())
-        return result
 
     def get_bmi_distribution(self):
         norm, ov, ob, uw = 0, 0, 0, 0
@@ -99,4 +119,7 @@ class Database(object):
             sales_list.append(int(v.get_sales()))
 
         return sorted(sales_list)
+
+
+
 

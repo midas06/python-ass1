@@ -14,51 +14,22 @@ class Processor(object):
         self.database = Database()
         self.editor = Editor()
         self.plotter = Plotter()
-    """
+
     def add_data(self, fileloc):
         self.filer.set_filepath(fileloc)
         self.filer.load_file()
         self.filer.strip_tags()
         self.validator.set_raw_data(self.filer.export())
         self.validator.parse_data()
-        self.database.add_people(self.validator.export_gooddata())
-    """
-    def add_data(self, fileloc):
-        #strippedString = fileloc.strip()
-        #if strippedString is "":
-            #return self.filer.get_file_path()
-        #else:
-            #try:
-
-                #self.validator.empty_raw_data()
-                #self.database.empty_database()
-
-                self.filer.set_filepath(fileloc)
-                self.filer.load_file()
-                self.filer.strip_tags()
-                self.validator.set_raw_data(self.filer.export())
-                self.validator.parse_data()
-                self.database.add_people(self.validator.export_gooddata())
-            #except FileNotFoundError as not_found_err:
-                #print("File not found")
-            #jess
-            #except IOError as not_found_err:
-                #print("No such file or directory: " + fileloc)
-                #return IOError
-
-    def check_path(self, fileloc): #checks if file exist
-        exist = False
-        if os.path.isfile(fileloc) == True:
-            exist = True
-        return  exist
+        self.database.add_people(self.validator.export_good_data())
 
     def process_bad(self):
-        if self.validator.has_baddata():
-            self.editor.set_raw(self.validator.export_baddata())
+        if self.validator.has_bad_data():
+            self.editor.set_raw(self.validator.export_bad_data())
             self.editor.edit()
-            self.database.add_people(self.editor.export_gooddata())
+            self.database.add_people(self.editor.export_good_data())
 
-    def serializetest(self):
+    def serialize_test(self):
         self.database.serialize()
         self.database.deserialize()
 
@@ -74,7 +45,7 @@ class Processor(object):
         sales_list = self.database.get_sales_ordered()
         self.plotter.scatter_sales(sales_list)
 
+    def bar_bmi_vs_gender(self):
+        self.plotter.bar_bmi_vs_gender(self.database.get_male_bmi(),self.database.get_female_bmi() )
 
-# a = Processor()
-# a.add_data("test.csv")
-# a.scatter_sales()
+
