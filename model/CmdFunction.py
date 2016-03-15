@@ -56,6 +56,14 @@ class CmdFunction(object):
         else:
             self.processor.process_bad()
 
+    def display_graphs(self, input):
+        if input == "1":
+            self.processor.pie_bmi()
+        elif input == "2":
+            self.processor.pie_gender()
+        elif input == "3":
+            self.processor.scatter_sales()
+
     """
     def quit(self, theMessage):
 
@@ -113,3 +121,7 @@ correctInput = ["w111, F, 11, 111, Normal, 111"]
 for i in range(len(value)):
     print(c.processor.editor.set_newvalue(correctInput[i], value[i]) == correctInput[i])
 """
+
+# c = CmdFunction()
+# c.load_file("test.csv")
+# c.display_graphs(1)

@@ -58,7 +58,6 @@ class Processor(object):
             self.editor.edit()
             self.database.add_people(self.editor.export_gooddata())
 
-
     def serializetest(self):
         self.database.serialize()
         self.database.deserialize()
