@@ -151,6 +151,13 @@ class Validator:
         for i in self._bad_data:
             print(i)
 
+    def get_all_bad_data(self):
+        result = ""
+        for i in self._bad_data:
+            result += i + "\n"
+        return result
+
+
     def empty_bad_data(self): #empty bad data every time a file with bad data is loaded
         self._bad_data = []
         #print("CURRENT BAD:" + str(len(self._bad_data)))
@@ -216,3 +223,8 @@ class Validator:
         # # sale = self.clean_sales("d")
         # # print(self.hasvalid_sales(sale))
 
+"""
+v = Validator()
+
+print(v.clean_gender("Female"))
+"""
