@@ -29,7 +29,6 @@ class Controller(cmd.Cmd):
         """
         self.cmdFunction.display_good(msg)
 
-
     def do_display_bad(self, msg):
         """
         Displays bad data in a string array - db
@@ -46,7 +45,6 @@ class Controller(cmd.Cmd):
         :return: none
         """
         self.cmdFunction.edit_bad(value)
-
 
     def do_quit(self, msg):
         """

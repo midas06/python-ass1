@@ -3,7 +3,6 @@ from model.FileHandler import *
 from model.Database import *
 from model.Editor import *
 from model.Plotter import *
-import os.path
 
 
 class Processor(object):
@@ -14,7 +13,6 @@ class Processor(object):
         self.database = Database()
         self.editor = Editor()
         self.plotter = Plotter()
-
 
     def add_data(self, fileloc):
         self.database.empty_database()

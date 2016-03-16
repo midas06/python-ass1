@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 class Plotter(object):
 
     def pie_bmi(self, normal_dist, ov_dist, obese_dist, uw_dist):
@@ -40,7 +41,6 @@ class Plotter(object):
 
         index = np.arange(n_groups)
         bar_width = 0.25
-
 
         rects1 = plt.bar(index, x, bar_width,
                          color='b',

@@ -41,7 +41,6 @@ class MainTests(unittest.TestCase):
         self.c.processor.database.add_people(self.c.processor.validator.export_good_data())
         self.assertEqual(self.c.processor.database.get_test_data(),["N520,F,57,346,Normal,98"])
 
-
     def test_age(self):
         """
         Accepts single numbers for age as an input and adds 0 before the number i.e. 8 to 08
@@ -65,7 +64,6 @@ class MainTests(unittest.TestCase):
         p = Person(self.c.processor.validator.clean_id("a558"), self.c.processor.validator.clean_gender("f"), self.c.processor.validator.clean_age("8"), self.c.processor.validator.clean_sales("885"), self.c.processor.validator.clean_bmi("normal"), self.c.processor.validator.clean_income("517"))
         self.c.processor.database.add_people({p.get_id(): p})
         self.assertEqual(self.c.processor.database.get_test_data(), ["A558,F,08,885,Normal,517"])
-
 
     def test_separate_good_bad_data(self):
         """

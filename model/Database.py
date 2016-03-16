@@ -15,8 +15,7 @@ class Database(object):
         self.serialize_location = new_location
 
     def get_directory(self):
-        print (self.serialize_location)
-        return str(self.serialize_location)
+        return self.serialize_location
 
     def serialize(self, option):
         if option == 0:
@@ -74,7 +73,6 @@ class Database(object):
                     male[3] +=1
         return male
 
-
     def get_female_bmi(self):
         female = [0,0,0,0]
         for key, value in self._database.items():
@@ -90,7 +88,6 @@ class Database(object):
                 elif bmi == "Underweight":
                     female[3] +=1
         return female
-
 
     def get_bmi_distribution(self):
         norm, ov, ob, uw = 0, 0, 0, 0
