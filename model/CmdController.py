@@ -82,7 +82,13 @@ class Controller(cmd.Cmd):
         :param none
         :return: none
         """
-        self.cmdFunction.serialize()
+        i = input("Press 'D' to save to the Default directory,\nPress 'N' to save to a New directory.\n")
+        if i == "D" or i == "d":
+            self.cmdFunction.serialize(0)
+        elif i == "N" or i == "n":
+            self.cmdFunction.serialize(1)
+        else:
+            self.do_serialize()
 
     def do_deserialize(self, value):
         """
@@ -91,7 +97,13 @@ class Controller(cmd.Cmd):
         :return: none
         """
         try:
-            self.cmdFunction.deserialize()
+            i = input("Press 'D' to load from the Default directory,\nPress 'N' to load from to a New directory.\n")
+            if i == "D" or i == "d":
+                self.cmdFunction.deserialize(0)
+            elif i == "N" or i == "n":
+                self.cmdFunction.deserialize(1)
+            else: self.do_deserialize()
+
         except IOError as no_file_err:
             print("No pickle file found")
             pass

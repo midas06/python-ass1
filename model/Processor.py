@@ -31,12 +31,18 @@ class Processor(object):
             self.editor.edit()
             self.database.add_people(self.editor.export_good_data())
 
-    def serialize(self):
-        self.database.serialize()
+    def set_file_path(self, new_path):
+        self.database.set_directory(new_path)
 
-    def deserialize(self):
+    def get_file_path(self):
+        return self.database.get_directory()
+
+    def serialize(self, option):
+        self.database.serialize(option)
+
+    def deserialize(self, option):
         self.database.empty_database()
-        self.database.deserialize()
+        self.database.deserialize(option)
 
     def pie_bmi(self):
         dist = self.database.get_bmi_distribution()
@@ -52,3 +58,5 @@ class Processor(object):
 
     def bar_bmi_vs_gender(self):
         self.plotter.bar_bmi_vs_gender(self.database.get_male_bmi(),self.database.get_female_bmi() )
+
+

@@ -56,9 +56,23 @@ class CmdFunction(object):
         else:
             print("No data has been loaded")
 
-    def serialize(self):
-        self.processor.serialize()
+    def serialize(self, option):
+        if option == 0:
+            o = 0
+        elif option == 1:
+            self.processor.set_file_path(input("Please enter the directory you wish to save to:\n"))
+            o = 1
+        try:
+            self.processor.serialize(o)
+        except OSError as no_dir_err:
+            print("Directory not found")
 
-    def deserialize(self):
-        self.processor.deserialize()
+
+    def deserialize(self, option):
+        if option == 0:
+            self.processor.deserialize(0)
+        elif option == 1:
+            self.processor.set_file_path(input("Please enter the directory you wish to load from:\n"))
+            self.processor.deserialize(1)
+
 
