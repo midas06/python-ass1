@@ -1,7 +1,4 @@
 class Person(object):
-    """
-    Person obj
-    """
 
     def __init__(self, new_id, new_gender, new_age, new_sales, new_bmi, new_income):
         self._id = new_id

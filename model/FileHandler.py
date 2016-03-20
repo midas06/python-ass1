@@ -1,6 +1,3 @@
-import re
-
-
 class FileHandler(object):
     """
     Deals with importing data from files, and converting to a list of strings.

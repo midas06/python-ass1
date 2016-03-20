@@ -31,7 +31,6 @@ class Plotter(object):
         plt.show()
 
     def bar_bmi_vs_gender(self, male_bmi, female_bmi):
-
         n_groups = 4
 
         x = male_bmi
@@ -41,15 +40,8 @@ class Plotter(object):
 
         index = np.arange(n_groups)
         bar_width = 0.25
-
-        rects1 = plt.bar(index, x, bar_width,
-                         color='b',
-                         label='Male')
-
-        rects2 = plt.bar(index + bar_width, y, bar_width,
-                         color='r',
-                         label='Female')
-
+        plt.bar(index, x, bar_width, color='b', label='Male')
+        plt.bar(index + bar_width, y, bar_width,color='r', label='Female')
         plt.xlabel('bmi')
         plt.ylabel('no. of people')
         plt.title('bmi by gender')

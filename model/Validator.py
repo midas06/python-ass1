@@ -1,4 +1,4 @@
-from model.Person import *
+from Person import *
 import re
 
 

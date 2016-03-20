@@ -1,5 +1,5 @@
-from model.Validator import *
-from model.Person import *
+from Validator import *
+from Person import *
 
 
 class Editor(object):

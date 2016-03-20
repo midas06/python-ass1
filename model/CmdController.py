@@ -1,6 +1,5 @@
 import cmd
-import os.path
-from model.CmdFunction import *
+from CmdFunction import *
 import doctest
 
 
@@ -28,6 +27,7 @@ class Controller(cmd.Cmd):
         :return: none
         """
         self.cmdFunction.display_good(msg)
+
 
     def do_display_bad(self, msg):
         """
@@ -86,7 +86,7 @@ class Controller(cmd.Cmd):
         elif i == "N" or i == "n":
             self.cmdFunction.serialize(1)
         else:
-            self.do_serialize()
+            self.do_serialize("")
 
     def do_deserialize(self, value):
         """

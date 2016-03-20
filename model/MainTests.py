@@ -1,5 +1,5 @@
 import unittest
-from model.CmdFunction import *
+from CmdFunction import *
 
 
 class MainTests(unittest.TestCase):
@@ -28,7 +28,6 @@ class MainTests(unittest.TestCase):
         self.c.load_file("test.csv")
         self.assertTrue(self.c.processor.database.get_length() == 200)
         self.assertTrue(self.c.processor.validator.get_bad_data_len() == 0)
-
 
     def test_gender(self):
         """

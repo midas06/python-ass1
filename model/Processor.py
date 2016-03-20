@@ -1,8 +1,7 @@
-from model.Validator import *
-from model.FileHandler import *
-from model.Database import *
-from model.Editor import *
-from model.Plotter import *
+from FileHandler import *
+from Database import *
+from Editor import *
+from Plotter import *
 
 
 class Processor(object):
@@ -56,5 +55,3 @@ class Processor(object):
 
     def bar_bmi_vs_gender(self):
         self.plotter.bar_bmi_vs_gender(self.database.get_male_bmi(),self.database.get_female_bmi() )
-
-

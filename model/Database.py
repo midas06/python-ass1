@@ -1,5 +1,6 @@
 import pickle
 import os
+import sys
 
 
 class Database(object):
@@ -15,7 +16,8 @@ class Database(object):
         self.serialize_location = new_location
 
     def get_directory(self):
-        return self.serialize_location
+        print (self.serialize_location)
+        return str(self.serialize_location)
 
     def serialize(self, option):
         if option == 0:
@@ -26,12 +28,14 @@ class Database(object):
             with os.fdopen(os.open(self.serialize_location + "\database.pickle", os.O_WRONLY | os.O_CREAT, 0o777), 'wb') as f:
                 pickle.dump(self._database, f)
 
-    def deserialize(self, option):
+    def deserialize(self,option):
+        default_file = sys.argv[1]
+        print(default_file)
         if option == 0:
-            with open('database.pickle', 'rb') as f:
+            with open(default_file, 'rb') as f:
                 self._database = pickle.load(f)
         elif option == 1:
-            with open(self.serialize_location + "\database.pickle", 'rb') as f:
+            with open(self.serialize_location + "\\" + default_file, 'rb') as f:
                 self._database = pickle.load(f)
 
     def get_person_by_id(self, an_id):
@@ -127,6 +131,5 @@ class Database(object):
             sales_list.append(int(v.get_sales()))
 
         return sorted(sales_list)
-
 
 
